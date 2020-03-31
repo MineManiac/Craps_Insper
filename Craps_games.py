@@ -12,21 +12,16 @@
 # O computador é quem realiza o lançamento de dois dados (6 lados) para o jogo.
 import random
 fichas = 100
-sair=1
-while fichas != 0 and sair == 0:
-    print("Você possui {0} fichas".format(fichas))
+print("Você possui {0} fichas".format(fichas))
+while fichas != 0:
     print("")
-    tipo_de_aposta= input("Qual o tipo de aposta que vc quer fazer? Digite 1 para Pass Line, Digite 2 para Field, Digite 3 para Any Craps, Digite 4 para Twelve, Digite 5 para sair ")
-    if tipo_de_aposta == '5':
-        print("Voce saiu com {0} fichas".format(fichas))
-        sair+=1
-    if sair == 0:
-        aposta = int(input("Qual é a sua aposta ? "))
-        if aposta > 0 and aposta <= fichas:
-            fichas = fichas - aposta
-        else:
-                    print("A quantidade de aposta está incompatível com o número de fichas que você possui")
-                    print("Aposte novamente")
+    tipo_de_aposta= input("Qual o tipo de aposta que vc quer fazer? Digite 1 para Pass Line, Digite 2 para Field, Digite 3 para Any Craps, Digite 4 para Twelve: ")
+    aposta = int(input("Qual é a sua aposta ? "))
+    if aposta > 0 and aposta <= fichas:
+        fichas = fichas - aposta
+    else:
+                print("A quantidade de aposta está incompatível com o número de fichas que você possui")
+                print("Aposte novamente")
     
 
 #Pass Line Bet - Na fase de 'Come Out', "if" a soma dos dados for 7 ou 11 o jogador ganha e as fichas apostadas sao dobradas.
@@ -36,74 +31,74 @@ while fichas != 0 and sair == 0:
 #"if" a soma dos dados der 7 o jogador perde tudo.
 #"if" qualquer outro numero continua rodando o dado
 
-        if tipo_de_aposta == '1':
-            Pass_Line= 0
-            while Pass_Line == 0:
-                dado1 = random.randint(1,6)
-                dado2 = random.randint(1,6)
-                soma = dado1 + dado2
-                print("o valor do primeiro dado foi {0}".format(dado1))
+    if tipo_de_aposta == '1':
+        Pass_Line= 0
+        while Pass_Line == 0:
+            dado1 = random.randint(1,6)
+            dado2 = random.randint(1,6)
+            soma = dado1 + dado2
+            print("o valor do primeiro dado foi {0}".format(dado1))
+            print("")
+            print("o valor do segundo dado foi {0}".format(dado2))
+            print("")
+            print("A soma dos dados foi {0}".format(soma))
+            print("")
+            if soma == 7 or soma == 11:
+                aposta = aposta*2
+                fichas = fichas + aposta
+                print("Você ganhou!")
                 print("")
-                print("o valor do segundo dado foi {0}".format(dado2))
+                print("Você agora possui {0}.".format(fichas))
                 print("")
-                print("A soma dos dados foi {0}".format(soma))
+                Pass_Line+=1
+            elif soma == 2 or soma == 3 or soma == 12 :
+                print("Você perdeu a aposta.")
+                Pass_Line+=1
+            elif soma == 4 or soma == 5 or soma == 6 or soma == 8 or soma == 9 or soma == 10:
+                print("Você passou de fase!!")
                 print("")
-                if soma == 7 or soma == 11:
-                    aposta = aposta*2
-                    fichas = fichas + aposta
-                    print("Você ganhou!")
-                    print("")
-                    print("Você agora possui {0}.".format(fichas))
-                    print("")
-                    Pass_Line+=1
-                elif soma == 2 or soma == 3 or soma == 12 :
-                    print("Você perdeu a aposta.")
-                    Pass_Line+=1
-                elif soma == 4 or soma == 5 or soma == 6 or soma == 8 or soma == 9 or soma == 10:
-                    print("Você passou de fase!!")
-                    print("")
-                    print("Agora você está na fase de Point.")
-                    print("")
-                    point = soma
-                    i = True
+                print("Agora você está na fase de Point.")
+                print("")
+                point = soma
+                i = True
+                t = True
+                while i:
+                    while t :
+                        ok = input("Digite ok para continuar: ")
+                        print("")
+                        if ok == "ok":
+                            t = False
+                        else:
+                            print("")
+                            print("Você precisa digitar ok!")
+                            print("")
                     t = True
-                    while i:
-                        while t :
-                            ok = input("Digite ok para continuar: ")
-                            print("")
-                            if ok == "ok":
-                                t = False
-                            else:
-                                print("")
-                                print("Você precisa digitar ok!")
-                                print("")
-                        t = True
-                        dado1 = random.randint(1,6)
-                        dado2 = random.randint(1,6)
-                        soma = dado1 + dado2
-                        print("o valor do primeiro dado foi {0}".format(dado1))
+                    dado1 = random.randint(1,6)
+                    dado2 = random.randint(1,6)
+                    soma = dado1 + dado2
+                    print("o valor do primeiro dado foi {0}".format(dado1))
+                    print("")
+                    print("o valor do segundo dado foi {0}".format(dado2))
+                    print("")
+                    print("A soma dos dados foi {0}".format(soma))
+                    print("")
+                    
+                    if soma == point :
+                        aposta = aposta*2
+                        fichas = fichas + aposta
+                        print("Você ganhou!")
                         print("")
-                        print("o valor do segundo dado foi {0}".format(dado2))
+                        print("Você agora possui {0}.".format(fichas))
                         print("")
-                        print("A soma dos dados foi {0}".format(soma))
+                        i = False
+                    elif soma == 7:
+                        print("Você perdeu.")
                         print("")
-                        
-                        if soma == point :
-                            aposta = aposta*2
-                            fichas = fichas + aposta
-                            print("Você ganhou!")
-                            print("")
-                            print("Você agora possui {0}.".format(fichas))
-                            print("")
-                            i = False
-                        elif soma == 7:
-                            print("Você perdeu.")
-                            print("")
-                            print("Você agora possui {0}.".format(fichas))
-                            print("")
-                            i = False
-                    if i == False:
-                        Pass_Line+=1
+                        print("Você agora possui {0}.".format(fichas))
+                        print("")
+                        i = False
+                if i == False:
+                    Pass_Line+=1
 
 
 
