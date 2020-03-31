@@ -15,14 +15,14 @@ fichas = 100
 print("Você possui {0} fichas".format(fichas))
 while fichas != 0:
     print("")
-    tipo_de_aposta= int(input("Qual o tipo de aposta que vc quer fazer? Digite 1 para Pass Line, Digite 2 para Field, Digite 3 para Any Craps, Digite 4 para Twelve: "))
+    tipo_de_aposta= int(input("Qual o tipo de aposta que vc quer fazer? Digite 1 para Pass Line, Digite 2 para Field, Digite 3 para Any Craps, Digite 4 para Twelve, Digite 5 para sair: "))
     if tipo_de_aposta < 1 or tipo_de_aposta > 5:
         print("Você deve escolher entre os números de 1 a 5")
         print("")
-    if tipo_de_aposta == 5:
+    elif tipo_de_aposta == 5:
             print("Você saiu com {0}".format(fichas))
             fichas = 0
-    else:
+    elif tipo_de_aposta == 1 or tipo_de_aposta == 2 or tipo_de_aposta == 3 or tipo_de_aposta == 4:
         aposta = int(input("Qual é a sua aposta ? "))
         if aposta > 0 and aposta <= fichas:
             fichas = fichas - aposta   
